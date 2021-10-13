@@ -7,25 +7,29 @@
 class DifferntioalEquation
 {
 public:
-	double x_0, x_1, x_2;
-	double dt;
-	double b_0, b_1;
+	double dt = 0.01;
+	std::function<double(double)> numeric_sol;
 
-	DifferntioalEquation();
-	double init();
-	virtual void analyticEq(std::ostream& os, double endTime);
-	virtual void numericEq(std::ostream& os, double endTime);
+	DifferntioalEquation() { }
 
-	virtual double update();
+	void init();
+	virtual void numericEq(){}
+	virtual double update() { return 0.; }
+	virtual void Output(std::ostream os, double endt) {}
 };
 
-class SpringDE : DifferntioalEquation
+class SpringDE : public DifferntioalEquation
 {
 public:
+	double x_p, x_0, x_n;
+	double b_0, v_0;
 	double m, b, k;
-	SpringDE();
-	void analyticEq(std::ostream& os, double endTime);
-	void numericEq(std::ostream& os, double endTime);
+	double D1 = 0, D2 = 0, C1 = 0, C2 = 0;
 
+	SpringDE(double m, double b, double k, double n_1, double n);
+
+	void init();
+	void numericEq();
 	double update();
+	void Output(std::ostream& os, double endt);
 };
