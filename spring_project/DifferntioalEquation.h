@@ -1,22 +1,31 @@
 #pragma once
 #include <iostream>
 #include <cmath>
+#include <functional>
+#include <Eigen/Dense>
+
 class DifferntioalEquation
 {
-	double x_0, x_1, x_2;
-
 public:
+	double x_0, x_1, x_2;
+	double dt;
+	double b_0, b_1;
+
 	DifferntioalEquation();
 	double init();
-	virtual double analyticEq(std::ostream& os, double endTime);
-	virtual double numericEq(std::ostream& os, double endTime);
+	virtual void analyticEq(std::ostream& os, double endTime);
+	virtual void numericEq(std::ostream& os, double endTime);
+
+	virtual double update();
 };
 
 class SpringDE : DifferntioalEquation
 {
-	double m, b, k;
 public:
+	double m, b, k;
 	SpringDE();
-	double analyticEq(std::ostream& os, double endTime);
-	double numericEq(std::ostream& os, double endTime);
+	void analyticEq(std::ostream& os, double endTime);
+	void numericEq(std::ostream& os, double endTime);
+
+	double update();
 };
