@@ -33,3 +33,19 @@ public:
 	double update();
 	void Output(std::ostream& os, double endt);
 };
+
+class RLCCircuitDE : public DifferntioalEquation
+{
+public:
+	double x_p, x_0, x_n;
+	double v_0, dv_0;
+	double a, b, c, v;
+	double D1 = 0, D2 = 0, C1 = 0, C2 = 0;
+
+	RLCCircuitDE(double R, double L, double C, double V,double v_0, double vprime_0);
+
+	void init();
+	void numericEq();
+	double update();
+	void Output(std::ostream& os, double endt);
+};
