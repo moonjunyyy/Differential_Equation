@@ -26,5 +26,11 @@
     <ClInclude Include="DifferntioalEquation.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="FluidDE.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="bmpNew.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

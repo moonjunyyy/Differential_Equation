@@ -1,7 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
+#include <sstream>
 #include "DifferntioalEquation.h"
+#include "FluidDE.h"
 
 int main(int argc, char* argv[])
 {
@@ -14,7 +17,6 @@ int main(int argc, char* argv[])
 	SDE1.Output(fio, 3.);
 
 	fio.close();
-	
 fail_harmonic:
 
 	fio.open("OverDamp.csv", std::ios::out);
@@ -26,7 +28,6 @@ fail_harmonic:
 	SDE2.Output(fio, 1.);
 
 	fio.close();
-
 fail_overdamp:
 
 	fio.open("UnderDamp.csv", std::ios::out);
@@ -38,7 +39,6 @@ fail_overdamp:
 	SDE3.Output(fio, 5.);
 
 	fio.close();
-
 fail_underdamp:
 
 	fio.open("RLC.csv", std::ios::out);
@@ -50,8 +50,22 @@ fail_underdamp:
 	RLCDE.Output(fio, 0.01);
 
 	fio.close();
-
 fail_RLC:
 
+	FluidDE F(500, 500);
+
+	for (int i = 200; i < 300; i++)
+	{
+		F.Mesh[i * (F.Sizex + 1)].velo_p = { 0.001, 0.001 };
+	}
+	F.dt = 1e-2;
+	double Max = 0;
+	for (double time = 0.; time < 10.; time += F.dt)
+	{
+		stringstream ss;
+		ss << "XXX" << (int)(time * 1e2) << ".BMP";
+		F.DrawIMG((char*)ss.str().c_str());
+	}
+	cout << Max << endl;
 	return 0;
 }

@@ -147,7 +147,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmpNew.h" />
     <ClInclude Include="DifferntioalEquation.h" />
+    <ClInclude Include="FluidDE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

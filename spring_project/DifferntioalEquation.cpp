@@ -116,7 +116,6 @@ void RLCCircuitDE::numericEq()
 	double D = (b * b) - (4 * a * c);
 	if (D > 0)
 	{
-		std::cout << "D>0" << std::endl << std::endl;
 		D = sqrt(D);
 		D1 = (-b + D) / (2 * a), D2 = (-b - D) / (2 * a);
 
@@ -137,7 +136,6 @@ void RLCCircuitDE::numericEq()
 
 	else if (D == 0)
 	{
-		std::cout << "D==0" << std::endl << std::endl;
 		D1 = -b / (2 * a);
 
 		Eigen::MatrixXd A(2, 2), B(2, 1), C;
@@ -156,12 +154,8 @@ void RLCCircuitDE::numericEq()
 	}
 	else
 	{
-		std::cout << "D<0" << std::endl << std::endl;
 		D2 = sqrt(abs(D)) / (2 * a);
 		D1 = -b / (2 * a);
-
-		std::cout << a << ", " << b << ", " << c << ", " << v << std::endl << std::endl;
-		std::cout << D1 << ", " << D2 << std::endl << std::endl;
 
 		Eigen::MatrixXd A(2, 2), B(2, 1), C;
 
@@ -174,8 +168,6 @@ void RLCCircuitDE::numericEq()
 
 		C1 = C(0, 0);
 		C2 = C(1, 0);
-
-		std::cout << C1 << ", " << C2 << std::endl << std::endl;
 
 		numeric_sol = [&](double x) -> double {return v + exp(D1 * x) * (C1 * cos(D2 * x) + C2 * sin(D2 * x)); };
 	}
